@@ -67,7 +67,7 @@ $.getJSON("Parks.geojson",function(data){
 	}).addTo(map);	
 });
 
-$.getJSON("ELC.geojson",function(data){
+$.getJSON("ELC.json",function(data){
 	L.geoJSON(data, {
 		pointToLayer: function(feature, latlng) {
 			var agesColor;
