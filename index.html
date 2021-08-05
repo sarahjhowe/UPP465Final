@@ -57,7 +57,10 @@ $.getJSON("Parks.geojson",function(data){
 	L.geoJSON(data, {
 	style: {
 		color: "green"
-	}
+	},
+	onEachFeature: function(feature, layer){
+			layer.bindPopup("<strong>"+ feature.properties.park + "</strong><br/>" + "Playgrounds:" + feature.properties.playground)
+		}
 }).addTo(map).bringToBack();
 
 });
@@ -67,10 +70,10 @@ $.getJSON("ELP.geojson",function(data){
 		pointToLayer: function(feature, latlng) {
 			var agesColor;
 			var agesServed = feature.properties.Ages_0_3;
-			if ( agesServed == "true" ) agesColor = "blue";
-			else agesColor = "red";
+			if ( agesServed == "true" ) agesColor = "white";
+			else agesColor = "black";
 			return new L.CircleMarker(latlng, 
-				{	radius: 3,
+				{	radius: 4,
 					fillOpacity: 2,
 					fillColor: agesColor,
 					color: 'black',
