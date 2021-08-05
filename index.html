@@ -82,8 +82,8 @@ $.getJSON("ELP.geojson",function(data){
 		pointToLayer: function(feature, latlng) {
 			var agesColor;
 			var agesServed = feature.properties.Ages_0_3;
-			if ( agesServed == "true" ) agesColor = "white";
-			else agesColor = "black";
+			if ( agesServed == "true" ) agesColor = "lightskyblue";
+			else agesColor = "midnightblue";
 			return new L.CircleMarker(latlng, 
 				{	radius: 4,
 					fillOpacity: 2,
