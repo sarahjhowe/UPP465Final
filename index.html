@@ -47,33 +47,20 @@
 <script>	
  
 var map = L.map('map').setView([41.88, -87.62], 10);
- 
-var Stamen_TonerLite = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}', {
-	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-	subdomains: 'abcd',
-	minZoom: 0,
-	maxZoom: 20,
-	ext: 'png'
+
+var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+	maxZoom: 16
 }).addTo(map);
 
 $.getJSON("Parks.geojson",function(data){
-  	L.geoJson(data, {
-		style: function(feature){
-			var conditionalColor;
-			var playgrounds = feature.properties.playground;
-				if ( playground > 2.00 ) conditionalColor = "#013220";
-				else if ( playground > 0.00 ) conditionalColor = "#32CD32";
-				else conditionalColor = "#90EE90";  // no data
-				return { 	color: "#999", 
-							weight: 1, 
-							fillColor: conditionalColor, 
-							fillOpacity: .6 };
-				},
-				onEachFeature: function( feature, layer ){
-				    layer.bindPopup( "park" + feature.properties.park)
-				}
-  					}  ).addTo(map).bringToBack();
-				}); 
+	L.geoJSON(data, {
+	style: {
+		color: "green"
+	}
+}).addTo(map).bringToBack();
+
+});
 
 $.getJSON("ELP.geojson",function(data){
 	L.geoJSON(data, {
