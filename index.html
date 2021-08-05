@@ -53,15 +53,27 @@ var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/r
 	maxZoom: 16
 }).addTo(map);
 
+
 $.getJSON("Parks.geojson",function(data){
 	L.geoJSON(data, {
 	style: {
-		color: "green"
+		color: "green",
 	},
 	onEachFeature: function(feature, layer){
 			layer.bindPopup("<strong>"+ feature.properties.park + "</strong><br/>" + "Playgrounds:" + feature.properties.playground)
 		}
-}).addTo(map).bringToBack();
+}).addTo(map);
+
+});
+
+$.getJSON("City.geojson",function(data){
+        L.geoJSON(data, {
+        style: {
+                color: "#C0C0C0",
+                fillColor: "transparant",
+                fillOpacity: .02,
+        }
+}).addTo(map);
 
 });
 
@@ -83,7 +95,7 @@ $.getJSON("ELP.geojson",function(data){
 		onEachFeature: function(feature, layer){
 			layer.bindPopup("<strong>"+ feature.properties.Site_Name + "</strong><br/>" + "Ages Served :" + feature.properties.Ages_Served)
 		}
-			}).addTo(map);
+			}).addTo(map).bringToFront();
 		});
 
 </script>
