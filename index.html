@@ -57,17 +57,10 @@ var Stamen_TonerLite = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/to
 }).addTo(map);
 
 $.getJSON("Parks.geojson",function(data){
-	L.geoJSON(data, {
-		pointToLayer: function(feature, latlng) {
-			return new L.CircleMarker(latlng,
-				{ radius: 5,
-				fillOpacity: 1,
-				fillColor: 'green'});
-		}
-	}).addTo(map);	
+	L.geoJSON(data).addTo(map);	
 });
 
-$.getJSON("ELC.json",function(data){
+$.getJSON("ELP.geojson",function(data){
 	L.geoJSON(data, {
 		pointToLayer: function(feature, latlng) {
 			var agesColor;
